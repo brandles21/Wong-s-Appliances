@@ -1,0 +1,53 @@
+START
+
+* Named Constants
+CONSTANT INTEGER CUBIC_INCHES_IN_CUBIC_FOOT = 1728
+STRING model_name
+INTEGER depth, height, width, capacity
+
+*Main Program
+def main():
+CALL def_model_info()
+WHILE model_name != ‘ERR’
+CALL calc_capacity(height, width, depth)
+CALL capacity_display(model_name, capacity)
+END WHILE
+CALL END_JOB()
+IF model_name is ERR:
+PRINT “END JOB”
+END IF
+END main()
+
+*Input Module
+def get_model_info():
+PRINT “Enter refrigerator model name (or ‘ERR’ to quit): ”
+INPUT model_name
+IF model_name != ‘ERR’
+PRINT “Enter the interior height in inches: “
+INPUT height
+PRINT “Enter the interior width in inches: “
+INPUT width
+PRINT “ENTER the interior depth in inches: “
+INPUT depth
+END IF
+END get_model_info
+
+*Calculation Module
+def calc_capacity(height, width, depth):
+cube_inches = height * width * depth
+cube_feet = cube_inches / CUBIC_INCHES_IN_CUBIC_FOOT
+END calc_capacity (height, width, depth)
+
+*Output Module
+def capacity_display(model_name, capacity):
+PRINT “ “The refrigerator capacity of” + model_name + “ is “ capacity + “ cubic feet.” + “Congratulations!” “
+END capacity_display(model_name, capacity)
+
+STOP
+
+
+
+
+
+
+
